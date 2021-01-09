@@ -1,2 +1,2 @@
-h1 Homes#login
-p Find me in app/views/homes/login.html.slim
+= simple_form_for :log_in, method: :post, url: new_session_homes_path do |f|
+  = f.input :email
