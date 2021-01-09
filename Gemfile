@@ -11,6 +11,8 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use slim template
 gem 'slim-rails'
+# User pry for debbuging
+gem 'pry'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -54,6 +56,8 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 4.0'
+
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
