@@ -9,6 +9,8 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+# simple form
+gem 'simple_form'
 # Use slim template
 gem 'slim-rails'
 # User pry for debbuging
