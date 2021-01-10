@@ -1,0 +1,9 @@
+
+es:
+  update: actualizo
+  destroy: elimino
+  created: creo
+
+  projects:
+    newsfeed:
+      an: este

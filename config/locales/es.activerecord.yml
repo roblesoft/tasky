@@ -1,0 +1,26 @@
+es:
+  activerecord:
+    models:
+      task:
+        one: Tarea
+        other: Tareas
+      project:
+        one: Proyecto
+        other: Proyectos
+      list_columns:
+        one: Lista
+        other: Listas
+    attributes:
+      task:
+        title: Título
+        description: Descripción
+        user: Usuario asignado
+      project:
+        title: Nombre
+        description: Descripción
+      list_columns:
+        title: Nombre
+        description: Descripción
+
+
+      
