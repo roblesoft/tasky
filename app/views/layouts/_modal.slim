@@ -5,3 +5,5 @@
         h2 class="modal__title" = title
         button [class="modal__close" aria-label="Close modal" data-micromodal-close]
       main class="modal__content" id="#{model.table_name}ContentModal"
+        - if block
+          = capture(&block)

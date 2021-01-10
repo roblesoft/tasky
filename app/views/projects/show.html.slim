@@ -13,3 +13,25 @@ p
 => link_to 'Edit', edit_project_path(@project)
 '|
 =< link_to 'Back', projects_path
+
+
+.row
+  .col
+    = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => ListColumn.table_name }
+      button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } }
+        p Nueva Lista
+.overflow-ao style='width: 100%; height: 70vh; overflow-x: auto; white-space: nowrap;'
+  - @project.list_columns.each do |list|
+    div*{ style: 'width: 25%; margin-left: 10px; margin-right: 10px; display: inline-block'}
+      .card
+        .card-header
+          h3.text-weight-bold = list.title
+          p.text-muted = list.description
+        .card-body
+
+
+= render_modal_content 'Nueva columna', ListColumn do
+  = simple_form_for [@project, ListColumn.new] do |f|
+    = f.input :title
+    = f.input :description
+    = f.submit
