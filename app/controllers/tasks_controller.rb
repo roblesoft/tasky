@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   def change_task_list
     @task = Task.find(params[:id])
-    if @task.update_columns(list_column_id: params[:list_column_id])
+    if @task.update(list_column_id: params[:list_column_id])
       render json: { head: :ok }
     else
       render json: 'error', status: unprocessable_entity
