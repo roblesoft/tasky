@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# homes controller
+# list columns controller
 class ListColumnsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[create]
@@ -8,7 +8,7 @@ class ListColumnsController < ApplicationController
   def create
     @list = @project.list_columns.new(list_column_params)
     if @list.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: 'list was successfully created.'
     else
       render :new
     end
