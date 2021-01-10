@@ -1,3 +1,20 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'homes#newsfeed'
+  resources :projects do
+    resources :list_columns
+  end
+  resources :tasks do
+    member do
+      post :change_task_list
+    end
+  end
+  resources :homes do
+    collection do
+      get :login
+      get :newsfeed
+      post :new_session
+    end
+  end
 end

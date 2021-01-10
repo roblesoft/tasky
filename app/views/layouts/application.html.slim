@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title
+      | Tasky
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body 
+    nav.navbar.navbar-expand-lg.d-flex.justify-content-betweennavbar-dark.bg-dark
+      .container
+        h2.pl-3.text-light.navbar-brand.font-weight-bold Tasky
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            .d-none.d-xl-block.mx-3
+              = link_to 'Projects', projects_path
+
+    .container
+      = yield
