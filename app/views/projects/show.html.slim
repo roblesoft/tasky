@@ -6,6 +6,8 @@
     h1.font-weight-bold = @project.title
     p.text-muted = @project.description
   .col-7.text-right
+    = link_to 'Newsfeed', newsfeed_project_path(@project), class: 'btn btn-success'
+    '
     = link_to 'Edit', edit_project_path(@project), class: 'btn btn-success'
     '
     = link_to 'Back', projects_path, class: 'btn btn-secondary'
