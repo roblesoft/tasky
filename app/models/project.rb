@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   has_many :user_projects, inverse_of: :project, dependent: :destroy
   has_many :list_columns, inverse_of: :project, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
+  has_many :project_events, class_name: 'Event'
   enum status: %i[open on_work close]
 
   def assign_owner(user)
