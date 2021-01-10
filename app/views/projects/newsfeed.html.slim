@@ -4,10 +4,10 @@
     p.text-muted = @project.description
   .col-7.text-right
     = link_to 'Back', @project, class: 'btn btn-secondary'
-- @project.project_events.each do |e|
+- @events.each do |e|
   .row
     .col
-      div class="alert alert-#{e.name.eql?('destroy') ? 'danger' : 'success'}"
+      div class="alert alert-#{news_color e.name}"
         .row
           .col
             .font-weight-bold 
@@ -16,10 +16,18 @@
             p
               = e.user.name&.titleize
               '
-              = t e.name.to_sym
+              bold = t e.name.to_sym
               '
               = t '.an'
               '
               = e.eventable.class.model_name.human
               '
               | '#{e.eventable.title}'
+              - if e.eventable.is_a?(Task)
+                '
+                = t '.to'
+                '
+                bold = e.eventable.list_column.title
+          .text-right
+            = e.created_at
+              
