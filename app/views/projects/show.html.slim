@@ -20,14 +20,30 @@ p
     = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => ListColumn.table_name }
       button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } }
         p Nueva Lista
-.overflow-ao style='width: 100%; height: 70vh; overflow-x: auto; white-space: nowrap;'
+div style='width: 100%; height: 70vh; overflow-x: auto; white-space: nowrap;'
   - @project.list_columns.each do |list|
     div*{ style: 'width: 25%; margin-left: 10px; margin-right: 10px; display: inline-block'}
       .card
         .card-header
           h3.text-weight-bold = list.title
           p.text-muted = list.description
+          = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => Task.table_name }
+            button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } }
+              p Nueva Tarea
         .card-body
+          - list.tasks.each do |task|
+            .card
+              .card-header
+                = task.title
+              .card-body
+                = task.description
+          = render_modal_content 'Nueva Tarea', Task do
+            = simple_form_for Task.new, method: :post do |f|
+              = f.association :list_column, as: :hidden, input_html: { value: list.id }
+              = f.association :user
+              = f.input :title
+              = f.input :description
+              = f.submit
 
 
 = render_modal_content 'Nueva columna', ListColumn do

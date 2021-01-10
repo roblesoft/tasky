@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :list_columns
   end
-
+  resources :tasks
   resources :homes do
     collection do
       get :login
