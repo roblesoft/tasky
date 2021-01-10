@@ -5,12 +5,18 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[newsfeed show edit update destroy]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
-  def show; end
+  def show
+    @list_columns = Project.includes(list_columns: [tasks: :user])
+                           .find(params[:id]).list_columns
+  end
 
-  def newsfeed; end
+  def newsfeed
+    @events = Project.includes(project_events: %i[eventable user])
+                     .find(params[:id]).project_events.order('created_at desc')
+  end
 
   def new
     @project = Project.new
