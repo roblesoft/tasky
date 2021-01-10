@@ -2,8 +2,10 @@
 es:
   update: actualizo
   destroy: elimino
-  created: creo
+  create: creo
+  move: movio
 
   projects:
     newsfeed:
-      an: este
+      an: esta
+      to: a

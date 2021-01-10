@@ -6,7 +6,7 @@ module Eventable
 
   included do
     after_create :save_create_event
-    after_update :save_update_event
+    before_update :save_update_event
     before_destroy :save_delete_event
 
     def self.current_user=(user)
@@ -23,6 +23,8 @@ module Eventable
   end
 
   def save_update_event
+    return new_event_for_newsfeed('move') if is_a?(Task)
+
     new_event_for_newsfeed('update')
   end
 
