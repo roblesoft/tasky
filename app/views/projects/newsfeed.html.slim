@@ -1,0 +1,25 @@
+.row.mt-5
+  .col-5
+    h1.font-weight-bold #{@project.title} Newsfeed
+    p.text-muted = @project.description
+  .col-7.text-right
+    = link_to 'Back', @project, class: 'btn btn-secondary'
+- @project.project_events.each do |e|
+  .row
+    .col
+      div class="alert alert-#{e.name.eql?('destroy') ? 'danger' : 'success'}"
+        .row
+          .col
+            .font-weight-bold 
+        .row
+          .col
+            p
+              = e.user.name&.titleize
+              '
+              = t e.name.to_sym
+              '
+              = t '.an'
+              '
+              = e.eventable.class.model_name.human
+              '
+              | '#{e.eventable.title}'
