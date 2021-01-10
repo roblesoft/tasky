@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   root 'homes#newsfeed'
-  resources :projects
+  resources :projects do
+    resources :list_columns
+  end
+
   resources :homes do
     collection do
       get :login
