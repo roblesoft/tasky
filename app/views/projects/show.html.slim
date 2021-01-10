@@ -1,22 +1,21 @@
 - if notice
-  .alert.alert-primary role='alert'
+  .alert.alert-primary.mt-5 role='alert'
     = notice
-
-.row
+.row.mt-5
   .col-5
     h1.font-weight-bold = @project.title
     p.text-muted = @project.description
   .col-7.text-right
-    = link_to 'Edit', edit_project_path(@project), class: 'btn btn-success d-inline'
+    = link_to 'Edit', edit_project_path(@project), class: 'btn btn-success'
     '
-    = link_to 'Back', projects_path, class: 'btn btn-secondary d-inline'
+    = link_to 'Back', projects_path, class: 'btn btn-secondary'
     '
     = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => ListColumn.table_name }, class: 'd-inline' 
       button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } } Nueva Lista
 = content_tag :div, data: { controller: 'draggable' } do
-  div style='width: 100%; height: 70vh; overflow-x: auto; white-space: nowrap;' data-target='draggable.container'
+  div style='width: 100%; height: 70vh; overflow-x: auto; white-space: nowrap; display: inline-block' data-target='draggable.container' class='project'
     - @project.list_columns.each do |list|
-      div*{ style: 'width: 25%; margin-left: 10px; margin-right: 10px; display: inline-block'}
+      div*{ style: 'width: 25%; margin-left: 10px; margin-right: 10px; display: inline-block;' , class: 'list'}
         .card
           .card-header
             .row
@@ -32,9 +31,9 @@
             - list.tasks.each do |task|
               .card.my-4 data-id="#{task.id}" class='StackedListItem--isDraggable' 
                 .card-header
-                  = task.title
+                  .font-weight-bold = task.title
                 .card-body
-                  = task.description
+                  p style='white-space:pre-wrap;' = task.description
             = render_modal_content 'Nueva Tarea', "#{Task.table_name}-#{list.id}" do
               = simple_form_for Task.new, method: :post do |f|
                 = f.association :list_column, as: :hidden, input_html: { value: list.id }
