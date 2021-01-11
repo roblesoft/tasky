@@ -23,6 +23,12 @@ class HomesController < ApplicationController
     end
   end
 
+  def sign_out
+    session[:user_id] = nil
+    flash[:success] = 'Haz salido correctamente'
+    redirect_to new_session_homes_path
+  end
+
   def new_session
     user = User.find_by(email: params[:log_in][:email])
 

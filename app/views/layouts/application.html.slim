@@ -19,6 +19,10 @@ html
           li.nav-item
             .d-none.d-xl-block.mx-3
               = link_to 'Projects', projects_path
+          - if session[:user_id] 
+            li.nav-item
+              .d-none.d-xl-block.mx-3
+                = link_to 'Salir', sign_up_homes_path
 
     .container
       = yield

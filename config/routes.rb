@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     collection do
       get :login
       get :sign_up
+      get :sign_out
       post :new_registry
       get :newsfeed
       post :new_session
