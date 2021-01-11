@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # projects helper
 module ProjectsHelper
   def news_color(type)
