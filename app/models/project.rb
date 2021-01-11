@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :list_columns, inverse_of: :project, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
   has_many :project_events, class_name: 'Event'
+  has_many :users, through: :user_projects
   validates :title, presence: true
   enum status: %i[open on_work close]
 

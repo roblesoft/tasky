@@ -85,7 +85,7 @@
               = render_modal_content 'Nueva Tarea', "#{Task.table_name}-#{list.id}" do
                 = simple_form_for Task.new, method: :post do |f|
                   = f.association :list_column, as: :hidden, input_html: { value: list.id }
-                  = f.association :user
+                  = f.association :user, collection: @project.users
                   = f.input :title
                   = f.input :description
                   = f.submit
