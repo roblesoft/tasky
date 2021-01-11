@@ -3,7 +3,7 @@
 # tasks controller
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: %i[edit update]
+  before_action :set_task, only: %i[destroy edit update]
 
   def create
     @task = Task.new(task_params)
@@ -33,6 +33,13 @@ class TasksController < ApplicationController
     else
       render json: 'error', status: unprocessable_entity
     end
+  end
+
+  def destroy
+    project = @task.list_column.project
+    return unless @task.destroy
+
+    redirect_to project, notice: 'Project was successfully destroyed.'
   end
 
   private
