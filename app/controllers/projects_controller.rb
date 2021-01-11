@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     if @project.save
       @project.assign_owner(current_user)
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: 'El proyecto se creo exitosamente'
     else
       render :new
     end
@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: 'Project was successfully updated.'
+      redirect_to @project, notice: 'El proyecto se actualizo'
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
   def destroy
     return unless @project.destroy
 
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    redirect_to projects_url, notice: 'El proyecto se borro correctamente'
   end
 
   private

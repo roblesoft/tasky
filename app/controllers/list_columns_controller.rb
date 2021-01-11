@@ -9,7 +9,7 @@ class ListColumnsController < ApplicationController
   def create
     @list = @project.list_columns.new(list_column_params)
     if @list.save
-      redirect_to @project, notice: 'list was successfully created.'
+      redirect_to @project, notice: 'La lista se actualizo correctamente'
     else
       render :new
     end
@@ -20,7 +20,7 @@ class ListColumnsController < ApplicationController
   def update
     if @list_column.update(list_column_params)
       redirect_to @list_column.project,
-                  notice: 'Task was successfully updated.'
+                  notice: 'La lista se actualizo correctamente'
     else
       render :edit
     end
@@ -29,7 +29,7 @@ class ListColumnsController < ApplicationController
   def destroy
     return unless @list_column.destroy
 
-    redirect_to @project, notice: 'Task was successfully destroyed.'
+    redirect_to @project, notice: 'La lista se borro correctamente'
   end
 
   private

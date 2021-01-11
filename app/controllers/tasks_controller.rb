@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       redirect_to @task.list_column.project,
-                  notice: 'Task was successfully created.'
+                  notice: 'La tarea se creo correctamente'
     else
       render :new
     end
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       redirect_to @task.list_column.project,
-                  notice: 'Task was successfully updated.'
+                  notice: 'La tarea se actualizo correctamente'
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
     project = @task.list_column.project
     return unless @task.destroy
 
-    redirect_to project, notice: 'Project was successfully destroyed.'
+    redirect_to project, notice: 'El proyecto se actualizo correctamente'
   end
 
   private
