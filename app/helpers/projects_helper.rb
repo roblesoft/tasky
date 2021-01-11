@@ -9,7 +9,7 @@ module ProjectsHelper
       'primary'
     when 'update'
       'success'
-    when 'delete'
+    when 'delete_task' || 'delte_listcolumn'
       'danger'
     else
       'info'

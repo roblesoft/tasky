@@ -29,7 +29,7 @@ module Eventable
   end
 
   def save_delete_event
-    new_event_for_newsfeed('delete')
+    new_event_for_newsfeed("delete_#{model_name.to_s.downcase}")
   end
 
   def new_event_for_newsfeed(name)
