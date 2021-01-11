@@ -12,17 +12,17 @@ html
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
   body 
-    nav.navbar.navbar-expand-lg.d-flex.justify-content-betweennavbar-dark.bg-dark
+    nav.navbar.navbar-expand-lg.d-flex.navbar-light.shadow-sm
       .container
-        h1.pl-3.text-light.navbar-brand.font-weight-bold Tasky
+        h2.pl-3.text-dark.font-weight-bold Tasky
         ul.navbar-nav.ml-auto
           li.nav-item
             .d-none.d-xl-block.mx-3
-              = link_to 'Proyectos', projects_path
+              = link_to 'Proyectos', projects_path, class: 'btn btn-outline-info  '
           - if session[:user_id] 
             li.nav-item
               .d-none.d-xl-block.mx-3
-                = link_to 'Salir', sign_up_homes_path
+                = link_to 'Salir', sign_up_homes_path, class: 'btn btn-outline-info  '
 
     .container
       = yield
