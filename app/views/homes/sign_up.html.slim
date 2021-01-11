@@ -1,5 +1,11 @@
-= simple_form_for @user, method: :post, url: new_registry_homes_path do |f|
-  = f.input :email
-  = f.input :name
-  = f.input :username
-  = f.submit 'Registrarse', class: 'btn btn-primary'
+.row.mt-5.text-center.justify-content-center
+  .col
+    .shadow.pa-4.border.rounded.pa-4 style='display: inline-block; padding: 4rem; width: 47rem'
+      h1.font-weight-bold.text-dark Registrate
+      = simple_form_for @user, method: :post, url: new_registry_homes_path do |f|
+        = f.input :email
+        = f.input :name
+        = f.input :username
+        = f.submit 'Registrarse', class: 'btn btn-primary'
+      hr.pb-3
+      = link_to 'Inicia sesión', login_homes_path

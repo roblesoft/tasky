@@ -1,3 +1,12 @@
-= simple_form_for :log_in, method: :post, url: new_session_homes_path do |f|
-  = f.input :email
-  = f.submit 'Entrar', class: 'btn btn-primary'
+- if flash[:error].present?
+  .alert.alert-danger.mt-5 role='alert'
+    = flash[:error]
+.row.mt-5.text-center.justify-content-center
+  .col
+    .shadow.pa-4.border.rounded.pa-4 style='display: inline-block; padding: 4rem; width: 47rem '
+      h1.font-weight-bold.text-dark Bienvenido
+      = simple_form_for :log_in, method: :post, url: new_session_homes_path do |f|
+        = f.input :email
+        = f.submit 'Entrar', class: 'btn btn-primary'
+      hr.pb-3
+      = link_to 'Registrate', sign_up_homes_path
