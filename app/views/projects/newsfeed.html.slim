@@ -13,21 +13,26 @@
             .font-weight-bold 
         .row
           .col
-            p
-              = e.user.name&.titleize
-              '
-              bold = t e.name.to_sym
-              '
-              = t '.an'
-              '
-              = e.eventable.class.model_name.human
-              '
-              | '#{e.eventable.title}'
-              - if e.eventable.is_a?(Task)
+            - if e.eventable
+              p
+                = e.user.name&.titleize
                 '
-                = t '.to'
+                bold = t e.name.to_sym
                 '
-                bold = e.eventable.list_column.title
-          .text-right
-            = e.created_at
-              
+                = t '.an'
+                '
+                = e.eventable.class.model_name.human
+                '
+                | '#{e.eventable.title}'
+                - if e.eventable.is_a?(Task)
+                  '
+                  = t '.to'
+                  '
+                  bold = e.eventable.list_column.title
+            - else
+              p
+                = e.user.name&.titleize
+                '
+                = t e.name
+            .text-right
+              = e.created_at
