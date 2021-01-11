@@ -40,7 +40,7 @@
                 = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "#{Task.table_name}-#{list.id}"}, class: 'd-inline-block' 
                   button*{ class: 'btn btn-primary btn-sm', data: { action: 'click->micromodal#show' } } +
                 '
-                = link_to '', project_list_column_path(@project, list), method: :delete, class: 'btn btn-sm btn-danger d-inline-block'
+                = link_to '', project_list_column_path(@project, list), method: :delete, class: 'btn btn-sm btn-danger d-inline-block', data: { confirm: '¿Esta seguro de eliminar la lista?' }
             .row
               .col
                 h3.text-weight-bold = list.title
@@ -59,7 +59,7 @@
                           = link_to edit_task_path(task), class: 'btn btn-sm btn-success', remote: true, data: { action: 'click->micromodal#show' } do
                             ion-icon name="pencil-outline"
                         '
-                        = link_to '', task, method: :delete, class: 'btn btn-sm btn-danger d-inline-block'
+                        = link_to '', task, method: :delete, class: 'btn btn-sm btn-danger d-inline-block', data: { confirm: '¿Esta seguro de eliminar la tarea?' }
                     .row
                       .col-8.px-0 style='white-space:pre-wrap;' 
                         .font-weight-bold = task.title
