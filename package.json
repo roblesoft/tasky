@@ -11,6 +11,7 @@
     "draggable": "^4.2.0",
     "micromodal": "^0.4.6",
     "stimulus": "^2.0.0",
+    "sweetalert2": "^10.13.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
