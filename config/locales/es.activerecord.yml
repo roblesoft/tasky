@@ -21,6 +21,8 @@ es:
       list_column:
         title: Nombre
         description: Descripción
-
-
+      user:
+        name: Nombre
+        username: Nombre de Usuario
+        email: Correo
       
