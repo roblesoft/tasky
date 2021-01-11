@@ -2,15 +2,16 @@
 
 # Projects controller
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :add_user_params, only: %i[add_user]
   before_action :set_project, only: %i[add_user newsfeed show edit
                                        update destroy]
 
   def add_user
-    return user_added_success if @user && !@role.nil?
-
     return user_already_added \
       if @project.user_projects.where(user_id: @user&.id).any?
+
+    return user_added_success if @user && !@role.nil?
 
     flash[:error] = 'El usuario no se encontro'
     redirect_to @project
