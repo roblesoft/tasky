@@ -1,0 +1,38 @@
+.row.mt-5
+  .col-5
+    h1.font-weight-bold #{@project.title} Newsfeed
+    p.text-muted = @project.description
+  .col-7.text-right
+    = link_to 'Átras', @project, class: 'btn btn-secondary'
+- @events.each do |e|
+  .row
+    .col
+      div class="alert alert-#{news_color e.name}"
+        .row
+          .col
+            .font-weight-bold 
+        .row
+          .col
+            - if e.eventable
+              p
+                = e.user.name&.titleize
+                '
+                bold = t e.name.to_sym
+                '
+                = t '.an'
+                '
+                = e.eventable.class.model_name.human
+                '
+                | '#{e.eventable.title}'
+                - if e.eventable.is_a?(Task)
+                  '
+                  = t '.to'
+                  '
+                  bold = e.eventable.list_column.title
+            - else
+              p
+                = e.user.name&.titleize
+                '
+                = t e.name
+            .text-right
+              = e.created_at

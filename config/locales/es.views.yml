@@ -1,0 +1,12 @@
+
+es:
+  update: actualizo
+  delete_task: elimino una tarea
+  delete_listcolumn: elimino una lista
+  create: creo
+  move: movio
+
+  projects:
+    newsfeed:
+      an: esta
+      to: a

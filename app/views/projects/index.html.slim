@@ -1,25 +1,22 @@
-h1 Listing projects
-
-table
-  thead
-    tr
-      th Title
-      th Description
-      th Status
-      th
-      th
-      th
-
-  tbody
+.row.my-3
+  .col
+    h1.font-weight-bold.text-dark Tus proyectos
+  .col.text-right
+    = link_to 'Nuevo proyecto', new_project_path, class: 'btn btn-primary'
+.row
+  .col
     - @projects.each do |project|
-      tr
-        td = project.title
-        td = project.description
-        td = project.status
-        td = link_to 'Show', project
-        td = link_to 'Edit', edit_project_path(project)
-        td = link_to 'Destroy', project, data: { confirm: 'Are you sure?' }, method: :delete
+      .card.mb-4
+        .card-header
+          .row
+            .col
+              h3.font-weight-bold.text-dark = project.title
+            .col.text-right
+              = link_to 'Show', project, class: 'btn btn-primary btn-sm'
+              '
+              = link_to 'Edit', edit_project_path(project), class: 'btn btn-success btn-sm'
+              '
+              = link_to 'Destroy', project, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sm'
+        .card-body
+          p.text-muted = project.description
 
-br
-
-= link_to 'New Project', new_project_path

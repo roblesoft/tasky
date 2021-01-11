@@ -1,0 +1,34 @@
+es:
+  activerecord:
+    models:
+      task:
+        one: tarea
+        other: tareas
+      project:
+        one: proyecto
+        other: proyectos
+      list_column:
+        one: lista
+        other: listas
+    attributes:
+      task:
+        title: Título
+        description: Descripción
+        user: Usuario asignado
+      project:
+        title: Nombre
+        description: Descripción
+      list_column:
+        title: Nombre
+        description: Descripción
+      user:
+        name: Nombre
+        username: Nombre de Usuario
+        email: Correo
+      
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: El correo ya ha sido tomado

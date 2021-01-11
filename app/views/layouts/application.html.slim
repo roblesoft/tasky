@@ -9,15 +9,20 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
   body 
-    nav.navbar.navbar-expand-lg.d-flex.justify-content-betweennavbar-dark.bg-dark
+    nav.navbar.navbar-expand-lg.d-flex.navbar-light.shadow-sm
       .container
-        h2.pl-3.text-light.navbar-brand.font-weight-bold Tasky
+        h2.pl-3.text-dark.font-weight-bold Tasky
         ul.navbar-nav.ml-auto
-          li.nav-item
-            .d-none.d-xl-block.mx-3
-              = link_to 'Projects', projects_path
+          - if current_user 
+            li.nav-item
+              .d-none.d-xl-block.mx-3
+                = link_to 'Proyectos', projects_path, class: 'btn btn-outline-info  '
+            li.nav-item
+              .d-none.d-xl-block.mx-3
+                = link_to 'Salir', sign_out_homes_path, class: 'btn btn-outline-info  '
 
     .container
       = yield

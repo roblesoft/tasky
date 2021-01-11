@@ -11,6 +11,8 @@ Bundler.require(*Rails.groups)
 module Tasky
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :es
+    config.time_zone = 'America/Monterrey'
     config.load_defaults 6.0
     config.generators do |g|
       g.test_framework :rspec

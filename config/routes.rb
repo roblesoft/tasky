@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'homes#newsfeed'
+  root 'projects#index'
   resources :projects do
     resources :list_columns
+    member do
+      get :newsfeed
+      post :add_user
+    end
   end
   resources :tasks do
     member do
@@ -13,6 +17,9 @@ Rails.application.routes.draw do
   resources :homes do
     collection do
       get :login
+      get :sign_up
+      get :sign_out
+      post :new_registry
       get :newsfeed
       post :new_session
     end

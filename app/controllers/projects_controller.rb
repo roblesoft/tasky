@@ -2,13 +2,34 @@
 
 # Projects controller
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :add_user_params, only: %i[add_user]
+  before_action :set_project, only: %i[add_user newsfeed show edit
+                                       update destroy]
 
-  def index
-    @projects = Project.all
+  def add_user
+    return user_already_added \
+      if @project.user_projects.where(user_id: @user&.id).any?
+
+    return user_added_success if @user && !@role.nil?
+
+    flash[:error] = 'El usuario no se encontro'
+    redirect_to @project
   end
 
-  def show; end
+  def index
+    @projects = current_user.projects
+  end
+
+  def show
+    @list_columns = Project.includes(list_columns: [tasks: :user])
+                           .find(params[:id]).list_columns
+  end
+
+  def newsfeed
+    @events = Project.includes(project_events: %i[eventable user])
+                     .find(params[:id]).project_events.order('created_at desc')
+  end
 
   def new
     @project = Project.new
@@ -41,6 +62,22 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def user_added_success
+    @project.user_projects.create(user: @user, role: @role)
+    flash[:success] = 'El usuario se agrego correctamente'
+    redirect_to @project
+  end
+
+  def user_already_added
+    flash[:error] = 'El usuario ya se encuentra agregado'
+    redirect_to @project
+  end
+
+  def add_user_params
+    @user = User.find_by(email: params[:add_user][:email])
+    @role = UserProject.roles.key(params[:add_user][:role].to_i)
+  end
 
   def set_project
     @project = Project.find(params[:id])
