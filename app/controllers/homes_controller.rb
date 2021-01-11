@@ -3,7 +3,7 @@
 # homes controller
 class HomesController < ApplicationController
   before_action :authenticate_user!,
-                except: %i[login new_session sign_up new_registry]
+                except: %i[login new_session sign_up new_registry sign_out]
 
   def login; end
 
@@ -25,9 +25,9 @@ class HomesController < ApplicationController
   end
 
   def sign_out
-    session[:user_id] = nil
+    session.delete(:user_id)
     flash[:success] = 'Haz salido correctamente'
-    redirect_to new_session_homes_path
+    redirect_to login_homes_path
   end
 
   def new_session
