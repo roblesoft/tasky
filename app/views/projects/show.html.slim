@@ -1,11 +1,18 @@
 - if notice
   .alert.alert-primary.mt-5 role='alert'
     = notice
+- if flash[:success].present?
+  .alert.alert-primary.mt-5 role='alert'
+    = flash[:success]
+- if flash[:error].present?
+  .alert.alert-danger.mt-5 role='alert'
+    = flash[:error]
 .row.mt-5
   .col-5
     h1.font-weight-bold = @project.title
     p.text-muted = @project.description
   .col-7.text-right
+
     = link_to 'Newsfeed', newsfeed_project_path(@project), class: 'btn btn-warning'
     '
     = link_to 'Editar', edit_project_path(@project), class: 'btn btn-success'
@@ -14,6 +21,9 @@
     '
     = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => ListColumn.table_name }, class: 'd-inline' 
       button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } } Nueva Lista
+    '
+    = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "add-#{User.table_name}"  }, class: 'd-inline' 
+      button*{ class: 'btn btn-info', data: { action: 'click->micromodal#show' } } Agregar usuario
 = content_tag :div, data: { controller: 'draggable' } do
   div style='width: 100%; height: 69vh; overflow-x: auto; white-space: nowrap; display: inline-block' data-target='draggable.container' class='project'
     - @list_columns.each do |list|
@@ -68,3 +78,10 @@
     = f.input :title
     = f.input :description
     = f.submit
+
+= render_modal_content 'Agregar a usuario', "add-#{User.table_name}" do
+  = simple_form_for :add_user, url: add_user_project_path(@project), method: :post  do |f|
+    = f.input :email
+    = f.input :role, collection: UserProject.roles
+    = f.submit
+
