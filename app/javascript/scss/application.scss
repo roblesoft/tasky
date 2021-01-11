@@ -1,4 +1,12 @@
 @import "bootstrap/scss/vendor/_rfs.scss";
 $enable-responsive-font-sizes: true;
 @import "bootstrap/scss/bootstrap";
-@import 'micromodal.css'
+@import 'micromodal.css';
+
+.btn-sm {
+  display: inline;
+  padding: 8px;
+  font-size: 0px;
+  text-align: center;
+  border-radius: 18px;
+}

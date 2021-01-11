@@ -24,12 +24,19 @@
               .col
                 h3.text-weight-bold = list.title
               .col.text-right
+                = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "#{ListColumn.table_name}-edit", class: 'inline-block' }
+                  = link_to edit_project_list_column_path(@project, list), class: 'btn btn-sm btn-success', remote: true, data: { action: 'click->micromodal#show' } do
+                    ion-icon name="pencil-outline"
+                '
                 = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "#{Task.table_name}-#{list.id}", class: 'inline-block' }
-                  button*{ class: 'btn btn-primary', data: { action: 'click->micromodal#show' } } +
+                  button*{ class: 'btn btn-primary btn-sm', data: { action: 'click->micromodal#show' } } +
+                '
+                = link_to '', project_list_column_path(@project, list), method: :delete, class: 'btn btn-sm btn-danger'
+
             .row
               .col
                 p.text-muted = list.description
-          .card-body.overflow-auto  data-list="#{list.id}" style='height: 57.5vh' class='draggable-container'
+          .card-body.overflow-auto data-list="#{list.id}" style='height: 57.5vh' class='draggable-container'
             - list.tasks.each do |task|
               .card.my-4 data-id="#{task.id}" style='cursor: pointer' class='StackedListItem--isDraggable' 
                 .card-header
@@ -39,8 +46,10 @@
                         .font-weight-bold = task.title
                       .col-4.text-right
                         = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "#{Task.table_name}-edit", class: 'inline-block' }
-                          = link_to edit_task_path(task), class: 'btn btn-success', remote: true, data: { action: 'click->micromodal#show' } do
+                          = link_to edit_task_path(task), class: 'btn btn-sm btn-success', remote: true, data: { action: 'click->micromodal#show' } do
                             ion-icon name="pencil-outline"
+                        '
+                        = link_to '', task, method: :delete, class: 'btn btn-sm btn-danger'
                 .card-body
                   p style='white-space:pre-wrap;' = task.description
             = render_modal_content 'Nueva Tarea', "#{Task.table_name}-#{list.id}" do
@@ -52,6 +61,7 @@
                 = f.submit
 
 = render_modal_content 'Editar tarea', "#{Task.table_name}-edit"
+= render_modal_content 'Editar Columna', "#{ListColumn.table_name}-edit"
 
 = render_modal_content 'Nueva columna', ListColumn.table_name do
   = simple_form_for [@project, ListColumn.new] do |f|
