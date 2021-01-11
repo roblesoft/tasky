@@ -26,3 +26,9 @@ es:
         username: Nombre de Usuario
         email: Correo
       
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: El correo ya ha sido tomado
