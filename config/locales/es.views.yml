@@ -1,7 +1,8 @@
 
 es:
   update: actualizo
-  destroy: elimino
+  delete_task: elimino una tarea
+  delete_listcolumn: elimino una lista
   create: creo
   move: movio
 

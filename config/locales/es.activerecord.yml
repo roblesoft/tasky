@@ -2,14 +2,14 @@ es:
   activerecord:
     models:
       task:
-        one: Tarea
-        other: Tareas
+        one: tarea
+        other: tareas
       project:
-        one: Proyecto
-        other: Proyectos
-      list_columns:
-        one: Lista
-        other: Listas
+        one: proyecto
+        other: proyectos
+      list_column:
+        one: lista
+        other: listas
     attributes:
       task:
         title: Título
@@ -18,7 +18,7 @@ es:
       project:
         title: Nombre
         description: Descripción
-      list_columns:
+      list_column:
         title: Nombre
         description: Descripción
 
