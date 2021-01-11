@@ -16,13 +16,13 @@ html
       .container
         h2.pl-3.text-dark.font-weight-bold Tasky
         ul.navbar-nav.ml-auto
-          li.nav-item
-            .d-none.d-xl-block.mx-3
-              = link_to 'Proyectos', projects_path, class: 'btn btn-outline-info  '
-          - if session[:user_id] 
+          - if current_user 
             li.nav-item
               .d-none.d-xl-block.mx-3
-                = link_to 'Salir', sign_up_homes_path, class: 'btn btn-outline-info  '
+                = link_to 'Proyectos', projects_path, class: 'btn btn-outline-info  '
+            li.nav-item
+              .d-none.d-xl-block.mx-3
+                = link_to 'Salir', sign_out_homes_path, class: 'btn btn-outline-info  '
 
     .container
       = yield
