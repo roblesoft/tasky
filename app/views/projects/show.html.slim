@@ -44,7 +44,7 @@
                     .row
                       .col-8 style='white-space:pre-wrap;' 
                         .font-weight-bold = task.title
-                      .col-4.text-right
+                      .col-4.text-right.px-0
                         = content_tag :div, data: { controller: 'micromodal', 'micromodal-id' => "#{Task.table_name}-edit", class: 'inline-block' }
                           = link_to edit_task_path(task), class: 'btn btn-sm btn-success', remote: true, data: { action: 'click->micromodal#show' } do
                             ion-icon name="pencil-outline"
