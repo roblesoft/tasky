@@ -2,7 +2,19 @@
 
 # Projects controller
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[newsfeed show edit update destroy]
+  before_action :add_user_params, only: %i[add_user]
+  before_action :set_project, only: %i[add_user newsfeed show edit
+                                       update destroy]
+
+  def add_user
+    return user_added_success if @user && !@role.nil?
+
+    return user_already_added \
+      if @project.user_projects.where(user_id: @user&.id).any?
+
+    flash[:error] = 'El usuario no se encontro'
+    redirect_to @project
+  end
 
   def index
     @projects = current_user.projects
@@ -49,6 +61,22 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def user_added_success
+    @project.user_projects.create(user: @user, role: @role)
+    flash[:success] = 'El usuario se agrego correctamente'
+    redirect_to @project
+  end
+
+  def user_already_added
+    flash[:error] = 'El usuario ya se encuentra agregado'
+    redirect_to @project
+  end
+
+  def add_user_params
+    @user = User.find_by(email: params[:add_user][:email])
+    @role = UserProject.roles.key(params[:add_user][:role].to_i)
+  end
 
   def set_project
     @project = Project.find(params[:id])
