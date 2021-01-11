@@ -14,11 +14,11 @@ html
   body 
     nav.navbar.navbar-expand-lg.d-flex.justify-content-betweennavbar-dark.bg-dark
       .container
-        h2.pl-3.text-light.navbar-brand.font-weight-bold Tasky
+        h1.pl-3.text-light.navbar-brand.font-weight-bold Tasky
         ul.navbar-nav.ml-auto
           li.nav-item
             .d-none.d-xl-block.mx-3
-              = link_to 'Projects', projects_path
+              = link_to 'Proyectos', projects_path
           - if session[:user_id] 
             li.nav-item
               .d-none.d-xl-block.mx-3
